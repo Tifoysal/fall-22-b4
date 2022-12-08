@@ -4,6 +4,9 @@
 @section('contents')
 
 <h1>Category List</h1>
+
+<a href="{{route('category.create.form')}}" class="btn btn-success">Create New Category</a>
+
     <table class="table">
         <thead>
         <tr>
