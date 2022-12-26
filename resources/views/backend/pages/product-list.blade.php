@@ -3,9 +3,9 @@
 
 @section('contents')
 
-<h1>Products</h1>
+<h1>Products </h1>
 
-
+<a class="btn btn-primary" href="{{route('product.create')}}">Create Product</a>
 <table class="table">
     <thead>
     <tr>

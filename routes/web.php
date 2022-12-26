@@ -27,5 +27,5 @@ Route::get('/category/create-form',[CategoryController::class,'createForm'])->na
 Route::post('/category/submit',[CategoryController::class,'submit'])->name('category.submit');
 
 Route::get('/product-list',[ProductController::class,'list'])->name('product.list');
-
+Route::get('/product/create',[ProductController::class,'createProduct'])->name('product.create');
 

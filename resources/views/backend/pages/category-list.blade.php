@@ -17,24 +17,16 @@
         </tr>
         </thead>
         <tbody>
+
+        @foreach($categories as $key=>$category)
         <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row">{{$key+1}}</th>
+            <td>{{$category->name}}</td>
+            <td>{{$category->description}}</td>
+            <td>{{$category->status}}</td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        @endforeach
+
         </tbody>
     </table>
 
