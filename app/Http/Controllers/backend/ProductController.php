@@ -24,6 +24,15 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+
+//        dd($request->all());
+        $request->validate([
+            'product_name'=>'required',
+            'price'=>'required|numeric|min:10',
+            'quantity'=>'required',
+            'category_id'=>'required'
+        ]);
+
         //migration column name=>input field name
     Product::create([
        'name'=>$request->product_name,

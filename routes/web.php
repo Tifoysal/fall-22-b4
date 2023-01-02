@@ -18,14 +18,21 @@ use \App\Http\Controllers\backend\AdminController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/admin-dashboard',[AdminController::class,'dashboard']);
-Route::get('/admin-master',[AdminController::class,'master']);
-Route::get('/admin-new-page',[AdminController::class,'newPage']);
 
-Route::get('/category-list',[CategoryController::class,'list'])->name('category.list');
-Route::get('/category/create-form',[CategoryController::class,'createForm'])->name('category.create.form');
-Route::post('/category/submit',[CategoryController::class,'submit'])->name('category.submit');
 
-Route::get('/product-list',[ProductController::class,'list'])->name('product.list');
-Route::get('/product/create',[ProductController::class,'createProduct'])->name('product.create');
-Route::post('/product/store',[ProductController::class,'store'])->name('product.store');
+Route::get('/admin/login',[AdminController::class,'login'])->name('admin.login');
+Route::post('/admin/do-login',[AdminController::class,'doLogin'])->name('admin.do.login');
+
+Route::group(['middleware'=>'auth'],function (){
+    Route::get('/admin',[AdminController::class,'dashboard'])->name('dashboard');
+    Route::get('/admin-new-page',[AdminController::class,'newPage']);
+
+    Route::get('/category-list',[CategoryController::class,'list'])->name('category.list');
+    Route::get('/category/create-form',[CategoryController::class,'createForm'])->name('category.create.form');
+    Route::post('/category/submit',[CategoryController::class,'submit'])->name('category.submit');
+
+    Route::get('/product-list',[ProductController::class,'list'])->name('product.list');
+    Route::get('/product/create',[ProductController::class,'createProduct'])->name('product.create');
+    Route::post('/product/store',[ProductController::class,'store'])->name('product.store');
+
+});

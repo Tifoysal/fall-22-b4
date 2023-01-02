@@ -2,6 +2,12 @@
 
 @section('contents')
 
+    @if($errors->any())
+        @foreach ($errors->all() as $error)
+            <p class="alert alert-danger">{{$error}}</p>
+        @endforeach
+    @endif
+
     @if(session()->has('message'))
     <p class="alert alert-success">
         {{session()->get('message')}}
@@ -12,12 +18,12 @@
         @csrf
         <div class="form-group">
             <label for="name">Enter Product Name:</label>
-            <input name="product_name" type="text" class="form-control" id="name" placeholder="Enter product name">
+            <input required name="product_name" type="text" class="form-control" id="name" placeholder="Enter product name">
            </div>
 
         <div class="form-group">
             <label for="price">Enter Product Price:</label>
-            <input name="price" type="number" class="form-control" id="price" placeholder="Enter product price">
+            <input required name="price" min="1" type="number" class="form-control" id="price" placeholder="Enter product price">
         </div>
 
         <div class="form-group">
