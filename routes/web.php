@@ -28,4 +28,4 @@ Route::post('/category/submit',[CategoryController::class,'submit'])->name('cate
 
 Route::get('/product-list',[ProductController::class,'list'])->name('product.list');
 Route::get('/product/create',[ProductController::class,'createProduct'])->name('product.create');
-
+Route::post('/product/store',[ProductController::class,'store'])->name('product.store');
