@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\backend\AdminController;
 /*
@@ -15,9 +16,7 @@ use \App\Http\Controllers\backend\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[HomeController::class,'home'])->name('home');
 
 
 Route::get('/admin/login',[AdminController::class,'login'])->name('admin.login');
@@ -35,4 +34,5 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('/product/create',[ProductController::class,'createProduct'])->name('product.create');
     Route::post('/product/store',[ProductController::class,'store'])->name('product.store');
 
+    Route::get('/logout',[AdminController::class,'logout'])->name('admin.logout');
 });

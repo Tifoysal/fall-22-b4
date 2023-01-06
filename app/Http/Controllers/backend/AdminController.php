@@ -40,4 +40,11 @@ class AdminController extends Controller
     public function newPage(){
         return view('backend.pages.newPage');
     }
+
+
+    public function logout()
+    {
+       auth()->logout();
+       return redirect()->route('admin.login');
+    }
 }
