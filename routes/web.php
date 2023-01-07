@@ -18,7 +18,16 @@ use \App\Http\Controllers\backend\AdminController;
 
 Route::get('/',[HomeController::class,'home'])->name('home');
 
+//frontend routes
+Route::post('/create-customer',[HomeController::class,'register'])->name('customer.register');
+Route::post('/customer-login',[HomeController::class,'login'])->name('customer.login');
+Route::get('/customer-logout',[HomeController::class,'logout'])->name('customer.logout');
 
+
+
+
+
+//backend routes
 Route::get('/admin/login',[AdminController::class,'login'])->name('admin.login');
 Route::post('/admin/do-login',[AdminController::class,'doLogin'])->name('admin.do.login');
 

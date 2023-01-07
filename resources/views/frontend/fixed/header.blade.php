@@ -4,10 +4,26 @@
             <a class="logo" href="index.html"><img src="images/logo.png"></a>
             <div class="search_section">
                 <ul>
-                    <li><a href="#">Log In</a></li>
-                    <li><a href="#"><img src="images/shopping-bag.png"></a></li>
-                    <li><a href="#"><img src="images/search-icon.png"></a></li>
-                </ul>
+                    @auth
+                        <li>{{auth()->user()->name}}</li>
+                        <li>
+                            <a class="btn btn-danger" href="{{route('customer.logout')}}">Logout</a>
+                        </li>
+                    @else
+                    <li>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login">
+                           Login
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registration">
+                            Registration
+                        </button>
+                    </li>
+                    @endguest
+
+                   </ul>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -98,4 +114,79 @@
         </div>
     </div>
     <!--banner section end -->
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Please Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('customer.login')}}" method="post">
+            @csrf
+                <div class="modal-body">
+                <div class="form-group">
+                    <label for="email">Enter Customer Email:</label>
+                    <input name="customer_email" id="email" type="email" class="form-control" placeholder="Enter Customer Email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Enter Customer Password:</label>
+                    <input name="customer_password" id="password" type="password" class="form-control" placeholder="Enter Customer Password">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{{--Registration--}}
+<div class="modal fade" id="registration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registration</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form action="{{route('customer.register')}}" method="post">
+                @csrf
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="name">Enter Customer Name:</label>
+                    <input name="customer_name" id="name" type="text" class="form-control" placeholder="Enter Customer Name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Enter Customer Email:</label>
+                    <input name="customer_email" id="email" type="email" class="form-control" placeholder="Enter Customer Email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Enter Customer Password:</label>
+                    <input name="customer_password" id="password" type="password" class="form-control" placeholder="Enter Customer Password">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+
+        </div>
+    </div>
 </div>
