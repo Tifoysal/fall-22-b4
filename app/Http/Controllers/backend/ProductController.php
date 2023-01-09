@@ -25,13 +25,19 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-//        dd($request->all());
+    //    dd($request->all());
         $request->validate([
             'product_name'=>'required',
             'price'=>'required|numeric|min:10',
             'quantity'=>'required',
             'category_id'=>'required'
         ]);
+        $image_name=null;
+        if ($request->hasFile('product_image'))
+        {
+            $image_name=date('Ymdhsis'). '.'. $request->file('product_image')->getClientOriginalExtension();
+            $request->file('product_image')->storeAs('/uploads/products', $image_name);
+        }
 
         //migration column name=>input field name
     Product::create([
@@ -40,6 +46,7 @@ class ProductController extends Controller
        'quantity'=>$request->quantity,
        'details'=>$request->details,
        'category_id'=>$request->category_id,
+       'image'=>$image_name
     ]);
     //insert into products () value ()
 

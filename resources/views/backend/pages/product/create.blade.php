@@ -14,7 +14,7 @@
     </p>
     @endif
 
-    <form action="{{route('product.store')}}" method="post">
+    <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="name">Enter Product Name:</label>
@@ -43,6 +43,10 @@
                 <option value="{{$cat->id}}">{{$cat->name}}</option>
                 @endforeach
             </select>
+          </div>
+        <div class="form-group">
+            <label>Product Image</label>
+            <input type="file" name="product_image" id="product_image" class="form-control">
           </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
