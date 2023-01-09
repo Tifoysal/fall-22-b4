@@ -31,7 +31,7 @@ Route::get('/customer-logout',[HomeController::class,'logout'])->name('customer.
 Route::get('/admin/login',[AdminController::class,'login'])->name('admin.login');
 Route::post('/admin/do-login',[AdminController::class,'doLogin'])->name('admin.do.login');
 
-Route::group(['middleware'=>'auth'],function (){
+Route::group(['middleware'=>'admin'],function (){
     Route::get('/admin',[AdminController::class,'dashboard'])->name('dashboard');
     Route::get('/admin-new-page',[AdminController::class,'newPage']);
 
