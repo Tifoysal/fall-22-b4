@@ -82,4 +82,23 @@ class HomeController extends Controller
         notify()->success('Logout success.');
         return redirect()->back();
     }
+
+
+    public function search(Request $request)
+    {
+//        dd(\request()->all());
+        $search_key=$request->search_key;
+//        $column_name=$request->column_name;
+        $order_by= $request->order_by ?? 'asc';
+
+
+        $products=Product::where('name','LIKE','%'.$search_key.'%')
+            ->orderBy('price',$order_by)
+            ->get();
+
+        return view('frontend.pages.search',compact('products'));
+
+
+
+    }
 }

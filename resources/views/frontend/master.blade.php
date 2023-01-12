@@ -34,8 +34,9 @@
    </head>
    <body>
       <!--header section start -->
-
-    @include('frontend.fixed.header')
+      @if(request()->route()->getName()=='home')
+        @include('frontend.fixed.header')
+      @endif
       <x:notify-messages />
 
 

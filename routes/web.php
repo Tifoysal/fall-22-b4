@@ -23,6 +23,8 @@ Route::post('/create-customer',[HomeController::class,'register'])->name('custom
 Route::post('/customer-login',[HomeController::class,'login'])->name('customer.login');
 Route::get('/customer-logout',[HomeController::class,'logout'])->name('customer.logout');
 
+//search
+Route::get('/search',[HomeController::class,'search'])->name('search');
 
 
 

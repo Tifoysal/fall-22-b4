@@ -67,7 +67,13 @@
                                 <div><img src="images/img-1.png" class="image_1"></div>
                             </div>
                         </div>
-                        <div class="button_main"><button class="all_text">All</button><input type="text" class="Enter_text" placeholder="Enter keywords" name=""><button class="search_text">Search</button></div>
+                        <div class="button_main">
+                            <button class="all_text">All</button>
+                            <form action="{{route('search')}}" method="get">
+                            <input type="text" class="Enter_text" placeholder="Enter keywords" name="search_key">
+                            <button class="search_text">Search</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <div class="carousel-item">
