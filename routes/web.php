@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\backend\AdminController;
@@ -26,6 +27,9 @@ Route::get('/customer-logout',[HomeController::class,'logout'])->name('customer.
 //search
 Route::get('/search',[HomeController::class,'search'])->name('search');
 
+Route::get('/add-to-cart/{id}',[CartController::class,'addToCart'])->name('add-to-cart');
+Route::get('/view/cart',[CartController::class,'viewCart'])->name('cart.view');
+Route::get('/delete/cart-product/{id}',[CartController::class,'deleteCartItem'])->name('cart.item.delete');
 
 
 

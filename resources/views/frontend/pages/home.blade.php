@@ -34,7 +34,7 @@
                         <div><img src="images/img-2.png" class="image_2"></div>
                         <div class="seemore_bt">
                             <a href="#">{{$product->price}} BDT</a>
-                            <a href="" class="btn btn-success">Buy Now</a>
+                            <a href="{{route('add-to-cart',$product->id)}}" class="btn btn-success">Add to cart</a>
                         </div>
                     </div>
                 </div>

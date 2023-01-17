@@ -4,6 +4,9 @@
             <a class="logo" href="index.html"><img src="images/logo.png"></a>
             <div class="search_section">
                 <ul>
+                    <li>
+                        <a href="{{route('cart.view')}}">Cart({{count(session()->get('myCart'))}})</a>
+                    </li>
                     @auth
                         <li>{{auth()->user()->name}}</li>
                         <li>
