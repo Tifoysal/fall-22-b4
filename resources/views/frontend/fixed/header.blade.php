@@ -5,7 +5,7 @@
             <div class="search_section">
                 <ul>
                     <li>
-                        <a href="{{route('cart.view')}}">Cart({{count(session()->get('myCart'))}})</a>
+                        <a href="{{route('cart.view')}}">Cart({{session()->has('myCart')?count(session()->get('myCart')):0}})</a>
                     </li>
                     @auth
                         <li>{{auth()->user()->name}}</li>
