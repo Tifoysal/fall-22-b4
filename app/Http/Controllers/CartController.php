@@ -10,17 +10,48 @@ class CartController extends Controller
     public function addToCart($id)
     {
        $product=Product::find($id);
+       $currentCart=session()->get('myCart');
 
-       //case 1 : add new product to cart
-       $cart[$id]=[
-           'product_name'=>$product->name,
-           'product_price'=>$product->price,
-           'product_quantity'=>1,
-           'subtotal'=>$product->price,
-           'image'=>$product->image
-       ];
+        if(empty($currentCart))// $cart->isEmpty(), isset()
+        {
+//                dd("cart is empty");
+            //case 1 : add new product to cart
+            $cart[$id]=[
+                'product_name'=>$product->name,
+                'product_price'=>$product->price,
+                'product_quantity'=>1,
+                'subtotal'=>$product->price,
+                'image'=>$product->image
+            ];
+            session()->put('myCart',$cart);
+            //end case 1
+        }
 
-       session()->put('myCart',$cart);
+        //cart not empty
+        if(array_key_exists($id,$currentCart))
+        {
+            //case 2: product exist quantity increase, sub-total
+//            $currentCart[$id]['product_quantity']= $currentCart[$id]['product_quantity']+1    ;
+            ++$currentCart[$id]['product_quantity'];
+            $currentCart[$id]['subtotal']=$currentCart[$id]['product_quantity'] * $currentCart[$id]['product_price'];
+            session()->put('myCart',$currentCart);
+        }else
+        {
+            //case 3: new product add
+            $currentCart[$id]=[
+                'product_name'=>$product->name,
+                'product_price'=>$product->price,
+                'product_quantity'=>1,
+                'subtotal'=>$product->price,
+                'image'=>$product->image
+            ];
+
+            session()->put('myCart',$currentCart);
+        }
+
+
+
+
        notify()->success('Product added to cart.');
        return redirect()->back();
 
